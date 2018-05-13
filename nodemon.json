@@ -1,0 +1,15 @@
+{
+  "verbose": true,
+  "ignore": [
+    ".git",
+    "node_modules/**",
+    "build",
+    "src/browser/js/bundle.js",
+    "src/browser/js/about.js"
+  ],
+
+    "watch": [
+      "src/"
+    ],
+    "ext": "js,json,css,html"
+ }
