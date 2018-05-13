@@ -1,0 +1,79 @@
+
+//- index.jade
+extends ./layout.pug
+
+ 
+mixin wallet-widget(info, id, value, onClick)
+  div.col-sm-3.stat-holder.small-info 
+    div.row
+      div.col.small-title
+        data=info 
+        span.small-details(id=id onClick=onClick)
+         data=value
+
+mixin stat-widget(info, id, value, onClick)
+  div.col-sm-4.stat-holder.text-truncate
+    div.big-info.bestblock.text-truncate
+        div.big-details-holder.text-truncate
+          span.big-title.text-truncate
+            data=info
+            span.big-details.text-info.text-truncate(id=id onClick=onClick)
+              data=value
+
+block content
+  div.align-right.alert-box(id="status")
+
+  div.container-fluid.content.text-nowrap(id="content")
+    h1="AEON Pool status"  
+
+    noscript="Please enable JavaScript"
+
+    div.row.wallet-panel(style="display: none;")
+      div.col-sm-12.stat-title
+        data="Wallet stat"
+      div.col-sm-12.address.text-truncate(id='wallet-address')
+        data=".." 
+      div
+        +wallet-widget("Hash rate", "walletHash", "..")
+        +wallet-widget("Due", "walletDue", "..")
+        +wallet-widget("Last payment", "walletLastPay", "..", "onGetWalletPayments();")
+        +wallet-widget("Total paid", "walletTotalPaid", "..")
+
+    div.row.pool-panel(style="display: none;")
+      div.col-sm-12.stat-title
+        data="Pool stat"
+      div.col-sm-12.address.text-truncate(id='pool-address')
+        data=".." 
+      // row
+      +stat-widget("Hash rate", "poolHashRate", "..")
+      +stat-widget("Time Found", "poolLastBlockFoundTime", "..", "onGetPoolBlocks();")
+      +stat-widget("Last blocks", "poolLastBlockFound", "..")
+
+    div.row.network-panel(style="display: none;")
+      div.col-sm-12.stat-title
+        data="Network stat"
+      // row
+      +stat-widget("Hash rate", "netHashRate", ".. MH/s")
+      +stat-widget("Difficulty", "netDifficulty", "..")
+      +stat-widget("Block height", "netBlockHeight", "..")
+      // next row
+      +stat-widget("Time Found", "netLastBlockFoundTime", ".. MH/s")
+      +stat-widget("Reward", "netBlockReward", "..")
+      +stat-widget("Hash", "netlastBlockFound", "..")
+
+  div.container-fluid.fixed-bottom.footer
+    div.footer
+      +footer-menu()
+      div.row.justify-content-between
+        div.col-2
+          nav.navbar.navbar-dark.copy
+            button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-label="Menu")
+              span.navbar-toggler-icon
+        div.col.text-right
+          span.classnavbar-text.d-none.d-sm-block.copy
+            br
+            data="Copyright (C) 2018 Fredrik Andersson" 
+            br
+            data="Released under MIT license"
+     
+

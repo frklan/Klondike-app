@@ -1,0 +1,34 @@
+
+//- index.jade
+extends ./layout.pug
+
+block content
+    div.container-fluid.align-middle.content(id="content")
+      p.h1= "About"
+
+      p="Hi, thanks for checking out this app. It has one function: to display "  
+        a(href="https://github.com/Snipa22/nodejs-pool")=""
+          i.fab.fa-github
+          data=" nodejs-pool"
+        data=" based AEON mining pool and wallet statistics."
+      p="Released under MIT licence, check out the source code on "
+        a(href="https://githutb.com/frklan")="github."
+      P="This app does not save any cookie data or use tracking features, wallet address and selected pool is saved locally on your device."
+      p="Suggestions and improvments are welcome."
+      p="I'll be very happy if you consider supporting the app by donating a few Aeons to "
+        // data="WmtjC5ZDa4wX9CBEZxcTa9fh7d8CAFeP82jS1W9hCxWb2gRNMztXnH3f67uVRbqBUxWPFxXqBcdi3EEAjMYtHrCt2erpgT6oP"      
+        data(style="color: #007bff;" onClick="{const wallet = 'WmtjC5ZDa4wX9CBEZxcTa9fh7d8CAFeP82jS1W9hCxWb2gRNMztXnH3f67uVRbqBUxWPFxXqBcdi3EEAjMYtHrCt2erpgT6oP';            const el = document.createElement('textarea');            el.value = wallet;            el.setAttribute('readonly', '');            el.style.position = 'absolute';            el.style.left = '-9999px';            document.body.appendChild(el);            el.select();            document.execCommand('copy');            document.body.removeChild(el);        }")="WmtjC5ZDa4wX9CBEZxcTa.."
+        data=" (click to copy)"
+      p.text-middle="// Fredrik"
+      p="P.S. Don't forget to show appreciations for you pool operators!"
+
+    div.container-fluid.fixed-bottom.align-middle.footer 
+      h2.text-center
+        div.row
+          div.col-12
+        div.row
+          div.col-12
+            a(href="/")=""
+              i.fas.fa-chevron-circle-left
+              data=" back"
+              

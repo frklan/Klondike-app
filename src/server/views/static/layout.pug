@@ -1,0 +1,84 @@
+//- layout.jade
+doctype html
+
+html(lang="EN")
+  head
+    meta(name="charset", content="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=5.0")
+    meta(name="theme-color" content="#090909")
+    meta(name="Description" content="Author: Fredrik Andersson, Aeon Cash, crypto, crypto currencies, blockchain, dashboard")
+    
+    title=title
+    script(defer src="/js/init.js")
+    script( src="https://code.jquery.com/jquery-3.2.1.min.js")
+
+    script( src="https://unpkg.com/popper.js/dist/umd/popper.min.js"  crossorigin="anonymous")
+    script( src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"  crossorigin="anonymous")
+    
+    link(rel='stylesheet', href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css",  crossorigin="anonymous")
+    link(rel='stylesheet', href="/stylesheets/klodikeStyle.css",  crossorigin="anonymous")
+    link(rel="manifest" href="/manifest.json")
+
+    script(defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous")
+    
+    script(defer src="/js/bundle.js")
+
+  body
+    
+
+    // Footer menu
+    mixin footer-menu()
+      div.collapse(id="navbarToggleExternalContent")
+        ul.nav.flex-column
+          li.nav-item
+              a.nav-link(href="#" data-toggle="modal" data-target="#trackWalletInputModal")="Track wallet"
+          li.nav-item
+            div.dropdown
+              button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownPoolApiUrl" data-toggle="dropdown")="Select pool"
+                div.dropdown-menu
+                  a.dropdown-item(href="#" onClick="onPoolApiSelect($(this));" data-url="https://api.supportaeon.com/" data-name="supportaeon.com")="supportaeon.com"
+                  a.dropdown-item(href="#" onClick="onPoolApiSelect($(this));" data-url="https://api.xmrpool.net/" data-name="XMRPool.net")="XMRPool.net"
+                  a.dropdown-item(href="#" onClick="onPoolApiSelect($(this));" data-url="https://www.durinsmine.com/api/" data-name="durinsmine.com")="durinsmine.com"
+                  a.dropdown-item(href="#" onClick="onPoolApiSelect($(this));" data-url="https://aeonpool.net/api/" data-name="AEONpool.net")="AEONpool.net"
+                  a.dropdown-item(href="#" onClick="onPoolApiSelect($(this));" data-url="https://api.aeonminingpool.com/api/" data-name="AeonMiningPool.com")="AeonMiningPool.com" 
+ 
+          li.nav-item
+            a.nav-link(href="/about.html")="About"
+          li.nav-item
+            a.nav-link(href="/help.html")="Help"
+ 
+    // Wallet to track dialog
+    div.modal.fade(id="trackWalletInputModal" tabindex="-1" role="dialog")
+      div.modal-dialog.modal-dialog-centered.modal-lg(role="document")
+        div.modal-content
+          div.modal-header
+              h5.modal-title="Track wallet"
+          div.modal-body
+            div.form-group.row
+              label.col-sm-2.col-form-label(for="label")="Address"
+              div.col-sm-10
+                input.form-control(type="text" id="inputWalletToTrack") 
+          div.modal-footer
+            button.btn.btn-secondary(type="button" data-dismiss="modal")="Cancel"
+            button.btn.btn-primary(type="button" onClick="onWalletSelect();" id="btnSetWalletToTrack")="Save"
+
+    div.modal.fade(id="listBoxModal" tabindex="-1" role="dialog")
+      div.modal-dialog.modal-dialog-centered.modal-lg(role="document")
+        div.modal-content
+          div.modal-header
+              h5.modal-title(id="modalTitle")
+              button.close(type="button" data-dismiss="modal")
+                span="×"
+          div.modal-body
+            div.form-group.row.justify-content-center
+              div.col-12.list-box-content
+                div.row.align-items-start
+                  div.col-4(id="listboxCol1Title")
+                  div.col-2(id="listboxCol2Title")
+                  div.col-6(id="listboxCol3Title")
+                div(id="listboxItemList")              
+
+    block content
+   
+    
+    

@@ -1,0 +1,28 @@
+
+//- index.jade
+extends ./layout.pug
+
+
+block content
+    div.container-fluid.align-middle.content.text-left(id="content")
+      p.h1= "Help"
+
+ 
+      div.pb-4
+      p="If you access this app on iOS you can select the 'share' button in Safari and then 'add to homescreen' to create a stand alone shortcut on the homescreen"
+      p.pb-4="The following options are available from the menu"
+      h4.text-info="Track wallet"
+      p.pb-4="Makes the app fetch wallet specific data from the pool. Enter a zero lenght string to remove the tracking. Note: Do NOT enter your private address here!"
+      h4.text-info="Select pool"
+      p.pb-4="Set the pool from which the data shall be fetched. Missing any pool? Create a PR on github and it will be added if possible (e.g. having an API over HTTPS etc.)"
+
+    div.container-fluid.fixed-bottom.align-middle.footer 
+      h2.text-center
+        div.row
+          div.col-12
+        div.row
+          div.col-12
+            a(href="/")=""
+              i.fas.fa-chevron-circle-left
+              data=" back"
+              
