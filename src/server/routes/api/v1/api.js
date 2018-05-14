@@ -21,7 +21,7 @@ router.get('/getaeonnetstat', function(req, res, next) {
 
   sendAccessControlHeader(res);
 
-  if(currentTime - aeonLastUpdated < 10000) {
+  if(currentTime - aeonLastUpdated < 10000 && aeonNetworkStat !== '') {
     return res.json(JSON.stringify(aeonNetworkStat));
   }
 
