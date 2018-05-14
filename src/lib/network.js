@@ -30,7 +30,8 @@ const Network = class extends EventEmitter {
     // Get netowk hash rate
     //https://dev.yellowforytfour.com:3010/api/v1/getaeonnetstat
     axios.get('https://rza0ormv2a.execute-api.eu-central-1.amazonaws.com/prod/api/v1/getaeonnetstat').then((response) => {
-      const hashRate = util.shortenLargeNumber(response.data.instantHashrate, 1);
+     
+    const hashRate = util.shortenLargeNumber(JSON.parse(response.data).instantHashrate, 1);
       this.emit('net', {hashRate: hashRate + 'H/s'}); 
     }).catch((error) => {
       this.emit('net', {hashRate: 'Unkown'});
