@@ -17,9 +17,7 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 
 var server = express();
 
-// view engine setup
-server.set('views', path.join(__dirname, 'views'));
-server.set('view engine', 'pug');
+
 
 //server.use(compression())
 //server.use(favicon(path.join(__dirname, '../../build', 'favicon.ico')));
@@ -33,6 +31,10 @@ server.use(logger(':date[iso] - :remote-addr :method :url :status :response-time
 
 
 if (process.env.NODE_ENV !== 'production') {
+  // view engine setup
+  server.set('views', path.join(__dirname, 'views'));
+  server.set('view engine', 'pug');
+
   server.use(express.static(path.join(__dirname, '../../build')));
 }
 
