@@ -26,6 +26,15 @@ server.use(logger(':date[iso] - :remote-addr :method :url :status :response-time
 // server.use(bodyParser.urlencoded({ extended: false }));
 // server.use(cookieParser());
 
+/**
+ *  Always set Access Control Headers 
+*/
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Headers', 'application/json');
+  next();
+});
 // Set API Gateway Middleware
 //server.use(awsServerlessExpressMiddleware.eventContext())
 
