@@ -8,9 +8,6 @@ if (workbox) {
  
   /**
    * For third party sites:*/
-  workbox.routing.registerRoute(new RegExp('^https://unpkg.com/(.*)'),
-   workbox.strategies.staleWhileRevalidate(),
-  );
   
   workbox.routing.registerRoute(new RegExp('^https://use.fontawesome.com/releases/(.*)'),
    workbox.strategies.cacheFirst(),
@@ -19,20 +16,7 @@ if (workbox) {
   workbox.routing.registerRoute(new RegExp('^https://fonts.gstatic.com/(.*)'),
     workbox.strategies.cacheFirst(),
   );
-
-  workbox.routing.registerRoute(new RegExp('^https://code.jquery.com/(.*)'),
-    workbox.strategies.staleWhileRevalidate(),
-  );    
   
-  workbox.routing.registerRoute(new RegExp('^https://stackpath.bootstrapcdn.com/bootstrap/(.*)'),
-    workbox.strategies.staleWhileRevalidate(),
-  );
-
-
-  workbox.routing.registerRoute(new RegExp('^https://cdnjs.cloudflare.com/ajax/libs/(.*)'),
-    workbox.strategies.staleWhileRevalidate(),
-  );
-
   workbox.routing.registerRoute(new RegExp('^https://dev.yellowfortyfour.com:3010/'),
     workbox.strategies.staleWhileRevalidate()
   );
