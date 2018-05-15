@@ -4,6 +4,7 @@
     ".git",
     "node_modules/**",
     "build",
+    "build-dev",
     "src/browser/js/bundle.js",
     "src/browser/js/about.js"
   ],

@@ -8,12 +8,13 @@
   "scripts": {
     "start-prod": "npm run build-prod && node src/server/bin/www",
     "start": "npm run build-dev && node src/server/bin/www",
-    "build-prod": "npm run build-static-prod && npm run build-webpack && npm run copy && workbox injectManifest workbox-config.js",
-    "build-dev": "npm run build-static-dev && npm run build-webpack-dev && npm run copy && workbox injectManifest workbox-config.js",
-    "copy": "copyfiles -u 2 src/browser/**/**/* src/browser/**/* src/browser/* build/",
+    "build-prod": "npm run build-static-prod && npm run build-webpack && npm run copy-prod && workbox injectManifest workbox-config.js",
+    "build-dev": "npm run build-static-dev && npm run build-webpack-dev && npm run copy-dev && workbox injectManifest workbox-config.js",
+    "copy-prod": "copyfiles -u 2 src/browser/**/**/* src/browser/**/* src/browser/* build/",
+    "copy-dev": "copyfiles -u 2 src/browser/**/**/* src/browser/**/* src/browser/* build-dev/",
     "build-webpack": "npx webpack --optimize-minimize --config webpack.config.js --mode production",
     "build-webpack-dev": "npx webpack --config webpack.config.js --mode development",
-    "build-static-dev": "pug src/server/views/static/ --out ./build/ --pretty",
+    "build-static-dev": "pug src/server/views/static/ --out ./build-dev/ --pretty",
     "build-static-prod": "pug src/server/views/static/ --out ./build/"
   },
   "dependencies": {
