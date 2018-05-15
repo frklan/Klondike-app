@@ -1,31 +1,12 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-// var favicon = require('serve-favicon');
 var logger = require('morgan');
-// var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
-//var compression = require('compression')
-
-//  Dynamic routes
-// var indexRouter = require('./routes/index');
-// var aboutRouter = require('./routes/about');
-// var helpRouter = require('./routes/help');
-var apiV1 = require('./routes/api/v1/api.js')
-
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 
 var server = express();
 
-
-
-//server.use(compression())
-//server.use(favicon(path.join(__dirname, '../../build', 'favicon.ico')));
 server.use(logger(':date[iso] - :remote-addr :method :url :status :response-time ms - :res[content-length]'));
-// server.use(bodyParser.json());
-// server.use(bodyParser.urlencoded({ extended: false }));
-// server.use(cookieParser());
-
 /**
  *  Always set Access Control Headers 
 */
@@ -35,6 +16,7 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'application/json');
   next();
 });
+
 // Set API Gateway Middleware
 //server.use(awsServerlessExpressMiddleware.eventContext())
 
@@ -47,9 +29,8 @@ if (process.env.NODE_ENV !== 'production') {
   server.use(express.static(path.join(__dirname, '../../build')));
 }
 
-//server.use('/', indexRouter);
-//server.use('/about.html', aboutRouter);
-//server.use('/help.html', helpRouter);
+//  Dynamic routes
+var apiV1 = require('./routes/api/v1/api.js')
 server.use('/api/v1', apiV1)
 
 
