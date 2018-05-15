@@ -1,0 +1,11 @@
+/build/
+/ssl/
+/src/browser/
+/src/lib/
+/src/server/views/static/
+/.vscode/
+
+src/server/bin/www  
+
+.env
+.gitmodules 
