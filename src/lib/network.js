@@ -26,17 +26,7 @@ const Network = class extends EventEmitter {
       this.emit('no network');
       return;
     }
-
-    // Get netowk hash rate
-    //https://dev.yellowforytfour.com:3010/api/v1/getaeonnetstat
-    axios.get('https://rza0ormv2a.execute-api.eu-central-1.amazonaws.com/prod/api/v1/getaeonnetstat').then((response) => {
-     
-    const hashRate = util.shortenLargeNumber(JSON.parse(response.data).instantHashrate, 1);
-      this.emit('net', {hashRate: hashRate + 'H/s'}); 
-    }).catch((error) => {
-      this.emit('net', {hashRate: 'Unkown'});
-    });
-    
+   
     // Get network stats
     const URL = this.apiUrl + 'network/stats';
     axios.get(URL).then((response) => {
@@ -49,7 +39,8 @@ const Network = class extends EventEmitter {
         height: netStat.height, 
         time: timeSinceLastBlock,
         reward: (netStat.value / 1000000000000).toFixed(3),
-        lasthash: netStat.hash
+        lasthash: netStat.hash,
+        hashRate: util.shortenLargeNumber(parseInt((netStat.difficulty) / 240), 3) + 'H/s'
        });
 
     }).catch((error) => {
